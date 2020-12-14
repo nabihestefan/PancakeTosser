@@ -5,13 +5,14 @@ function []=runToss(filename, start, finish, name)
 
     if length(perfect) > length(trial)
        len = length(perfect);
-       fPer = fPer(1:length(trial));
+       fPer = fPer(1:length(trial), 3);
     else
         len = length(trial);
-        fTrial = fTrial(1:length(perfect));
+        fTrial = fTrial(1:length(perfect), 3);
     end
 
-    f = abs(fPer - fTrial);
+    freq = abs(fPer - fTrial);
+    f = sqrt(freq(:,2).^2 + freq(:,3).^2);
     f = f / (max(f));
     red = zeros(size(f));
     green = 1 - f;
@@ -31,7 +32,7 @@ function []=runToss(filename, start, finish, name)
         if i < length(trial)
             TestY = [trial(i,2)];
             TestZ = [trial(i,3)];
-            if i < length(f)
+            if i < length(rgb)
                 scatter(TestY,TestZ,50,rgb(i,:),'filled');
             else
                 scatter(TestY,TestZ,50,[1,0,1],'filled');

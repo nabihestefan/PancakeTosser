@@ -39,6 +39,6 @@ function [pos, mag]=loadPerfectToss()
     % Frequency Plot Testing
     % figure(2);
     % o=200;
-    mag = sqrt(Accel_final(:,1).^2 + Accel_final(:,2).^2 + Accel_final(:,3).^2);
+    mag = [fftshift(fft(Accel_final(:,1))),fftshift(fft(Accel_final(:,2))),fftshift(fft(Accel_final(:,3)))];
     % make_freq_plot(mag(1+o:25+o), 100)
 end
