@@ -1,0 +1,46 @@
+clear all; close all;
+[perfect, fPer] = loadPerfectToss();
+[trial, fTrial] = loadTrial('failures.mat', 1970, 2070);
+%animation
+
+figure()
+pause(2)
+if length(perfect) > length(trial)
+   len = length(perfect);
+   fPer = fPer(1:length(trial));
+else
+    len = length(trial);
+    fTrial = fTrial(1:length(perfect));
+end
+
+f = fPer - fTrial;
+f = f / (max(f));
+red = abs(f - 10;
+green
+blue = 
+rgb = [red,green,blue];
+
+for i = 1:len
+% Plotting
+    if i < length(perfect)
+        PerfectY = [perfect(i,2)];
+        PerfectZ = [perfect(i,3)];
+        scatter(PerfectY,PerfectZ,50,[1,1,1],'filled');
+    end
+    if i < length(trial)
+        TestY = [trial(i,2)];
+        TestZ = [trial(i,3)];
+        if i < length(f)
+            scatter(TestY,TestZ,50,rgb(i,:),'filled');
+        else
+            scatter(TestY,TestZ,50,[1,0,0],'filled');
+            
+        end
+    end
+    
+    axis([-1 1 -10 25]);
+    set(gca,'Color',[0,0,0]); %black background
+    hold on;
+    xlabel('Z (cm)'); ylabel('Y (cm)');
+    view(2); axis equal; pause(.0000001);
+end

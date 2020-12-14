@@ -1,0 +1,6 @@
+% Define Rot matrices (for MATLAB)
+function r=Rot(yaw, pitch, roll)
+    r = ([cosd(roll) 0 -sind(roll); 0 1 0; sind(roll) 0 cosd(roll)])* ...
+    ([1 0 0; 0 cosd(pitch) -sind(pitch); 0 sind(pitch) cosd(pitch)])* ...
+    [cosd(yaw) -sind(yaw) 0; sind(yaw) cosd(yaw) 0; 0 0 1];
+end
