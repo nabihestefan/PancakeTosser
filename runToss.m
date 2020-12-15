@@ -21,8 +21,14 @@ function []=runToss(filename, start, finish, name)
     
     figure()
     pause(2)
-
-    for i = 1:len
+    PerfectY = [perfect(1,2)];
+    PerfectZ = [perfect(1,3)];
+    scatter(PerfectY,PerfectZ,50,[1,1,1]);
+    TestY = [trial(1,2)];
+    TestZ = [trial(1,3)];
+    scatter(TestY,TestZ,50,rgb(1,:),'filled');
+                
+    for i = 2:len
     % Plotting
         if i < length(perfect)
             PerfectY = [perfect(i,2)];
@@ -44,10 +50,10 @@ function []=runToss(filename, start, finish, name)
         set(gca,'Color',[0,0,0]); %black background
         hold on;
         title(name);
-        lgd = legend('Perfect Toss', 'Trial Toss');
+        lgd = legend('Testing Toss', 'Perfect Toss');
         c = lgd.TextColor;
         lgd.TextColor = [1,1,1];
         xlabel('Z (cm)'); ylabel('Y (cm)');
-        view(2); axis equal; 
+        view(2); axis equal; pause(0.000000001);
     end
 end
